@@ -19,14 +19,21 @@ function event(text) {
 const guarantee = createSuggestion(event("Can you guarantee I will not lose money?"), knowledgeBase);
 assert.strictEqual(guarantee.status, "grounded");
 assert.strictEqual(guarantee.sources[0].id, "RJ-DEMO-RISK-001");
+assert.match(guarantee.advisorResponse, /cannot guarantee/i);
 
 const unsupported = createSuggestion(event("My favorite team is playing tonight."), knowledgeBase);
 assert.strictEqual(unsupported.status, "unsupported");
 assert.deepStrictEqual(unsupported.sources, []);
 assert.match(unsupported.suggestion, /No supported suggestion/);
+assert.match(unsupported.advisorResponse, /Do not invent guidance/);
 
 const tax = createSuggestion(event("Can you give me tax advice for my estate?"), knowledgeBase);
 assert.strictEqual(tax.status, "grounded");
 assert.strictEqual(tax.sources[0].id, "RJ-DEMO-COMPLIANCE-004");
+
+const fees = createSuggestion(event("How do you get paid and what fees would I be charged?"), knowledgeBase);
+assert.strictEqual(fees.status, "grounded");
+assert.strictEqual(fees.sources[0].id, "RJ-DEMO-FEES-008");
+assert.match(fees.advisorResponse, /review costs clearly/i);
 
 console.log("Grounding tests passed.");

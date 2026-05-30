@@ -30,6 +30,7 @@ function createSuggestion(transcriptEvent, knowledgeBase) {
       status: "unsupported",
       severity: "none",
       suggestion: "No supported suggestion available from approved materials.",
+      advisorResponse: "Stay with discovery or ask a neutral clarifying question. Do not invent guidance.",
       rationale: "The transcript did not match any approved demo knowledge source.",
       sources: [],
       matchedTags: []
@@ -44,6 +45,7 @@ function createSuggestion(transcriptEvent, knowledgeBase) {
     status: "grounded",
     severity: best.source.id.includes("COMPLIANCE") || best.source.id.includes("RISK") ? "high" : "medium",
     suggestion: best.source.suggestion,
+    advisorResponse: best.source.advisorResponse,
     rationale: best.source.guidance,
     sources: [
       {

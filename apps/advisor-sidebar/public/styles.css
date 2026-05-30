@@ -227,6 +227,28 @@ h2 {
   line-height: 1.45;
 }
 
+.advisor-response {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(11, 107, 95, 0.24);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.advisor-response span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.advisor-response p {
+  margin: 0;
+  color: var(--ink);
+}
+
 .source {
   margin-top: 10px;
   font-size: 13px;

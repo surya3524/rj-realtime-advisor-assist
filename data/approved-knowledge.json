@@ -4,41 +4,71 @@
     "title": "Investment risk and guarantees",
     "tags": ["guarantee", "guaranteed", "risk", "lose money", "loss"],
     "guidance": "Do not describe market investments as guaranteed. Explain that investments involve risk, including possible loss of principal.",
-    "suggestion": "Clarify that market investments are not guaranteed and involve risk, including possible loss of principal."
+    "suggestion": "Clarify risk before continuing.",
+    "advisorResponse": "I cannot guarantee that an investment will avoid losses. What I can do is help you understand the risks, your time horizon, and options that may fit your comfort level."
   },
   {
     "id": "RJ-DEMO-DIVERSIFY-002",
     "title": "Diversification explanation",
-    "tags": ["diversification", "diversify", "spread out", "spread it out", "single stock", "portfolio"],
+    "tags": ["diversification", "diversify", "spread out", "spread it out", "single stock", "company stock", "portfolio", "concentrated"],
     "guidance": "Diversification can help manage concentration risk, but it does not guarantee profit or protect against loss.",
-    "suggestion": "Explain that diversification helps manage concentration risk but does not guarantee gains or prevent losses."
+    "suggestion": "Flag concentration risk and discuss diversification carefully.",
+    "advisorResponse": "Having a large amount in one company can create concentration risk. Diversification may help spread risk, though it does not guarantee gains or prevent losses."
   },
   {
     "id": "RJ-DEMO-RETIREMENT-003",
     "title": "Retirement planning discovery",
-    "tags": ["retirement", "retire", "income", "401k", "ira"],
+    "tags": ["retirement", "retire", "income", "401k", "ira", "monthly", "expenses", "social security"],
     "guidance": "Ask discovery questions about time horizon, income needs, savings, risk tolerance, and tax considerations before discussing strategies.",
-    "suggestion": "Ask about retirement timeline, income needs, savings, and risk tolerance before discussing possible strategies."
+    "suggestion": "Move into retirement discovery before discussing products.",
+    "advisorResponse": "Before we talk about any strategy, I would like to understand your retirement date, monthly spending needs, income sources, savings, and how much market movement you are comfortable with."
   },
   {
     "id": "RJ-DEMO-COMPLIANCE-004",
     "title": "Complex tax or legal requests",
     "tags": ["tax advice", "legal advice", "estate", "will", "lawsuit", "irs"],
     "guidance": "Advisors should avoid providing legal or tax advice and should recommend consulting a qualified tax or legal professional.",
-    "suggestion": "Avoid giving legal or tax advice; suggest the client consult a qualified tax or legal professional."
+    "suggestion": "Do not answer as tax or legal advice.",
+    "advisorResponse": "That is an important question, but I cannot provide tax or legal advice. I can coordinate around your financial plan, and you should review the estate or tax details with a qualified professional."
   },
   {
     "id": "RJ-DEMO-SUITABILITY-005",
     "title": "Suitability before recommendations",
-    "tags": ["recommend", "should i buy", "best investment", "suitable", "right for me"],
+    "tags": ["recommend", "should i buy", "best investment", "suitable", "right for me", "put the money", "annuity", "bond fund"],
     "guidance": "Before making investment recommendations, gather relevant client profile details and consider suitability.",
-    "suggestion": "Pause before making a recommendation and gather client profile details needed for suitability."
+    "suggestion": "Pause and gather suitability information.",
+    "advisorResponse": "I do not want to recommend something before I understand the full picture. Let me ask a few questions about your goals, timeline, liquidity needs, risk tolerance, and existing holdings."
   },
   {
     "id": "RJ-DEMO-VOLATILITY-006",
     "title": "Market volatility response",
-    "tags": ["market down", "volatility", "recession", "panic", "sell everything"],
+    "tags": ["market down", "volatility", "recession", "panic", "sell everything", "crash", "scared"],
     "guidance": "Encourage a calm review of goals, time horizon, liquidity needs, and risk tolerance during volatile markets.",
-    "suggestion": "Acknowledge the concern and suggest reviewing goals, time horizon, liquidity needs, and risk tolerance before reacting."
+    "suggestion": "De-escalate panic selling and return to the plan.",
+    "advisorResponse": "I understand why that feels stressful. Before making a big move, let us review your goals, timeline, cash needs, and risk tolerance so we are not reacting only to short-term market movement."
+  },
+  {
+    "id": "RJ-DEMO-LIQUIDITY-007",
+    "title": "Emergency fund and liquidity",
+    "tags": ["emergency fund", "cash", "liquidity", "need access", "unexpected expense", "job loss"],
+    "guidance": "Discuss near-term cash needs and emergency reserves before committing assets to less liquid or market-sensitive strategies.",
+    "suggestion": "Check liquidity needs before discussing investment allocation.",
+    "advisorResponse": "Before we decide how much to invest, let us separate money you may need soon from money that can stay invested longer. That helps avoid selling at a bad time for an unexpected expense."
+  },
+  {
+    "id": "RJ-DEMO-FEES-008",
+    "title": "Fees and transparency",
+    "tags": ["fees", "fee", "commission", "cost", "charged", "pay you"],
+    "guidance": "Explain compensation and product costs clearly, including advisory fees, fund expenses, transaction costs, and other applicable charges.",
+    "suggestion": "Explain fees transparently before moving forward.",
+    "advisorResponse": "Yes, we should review costs clearly. Depending on the approach, there may be advisory fees, fund expenses, transaction costs, or other charges, and I want you to understand them before making a decision."
+  },
+  {
+    "id": "RJ-DEMO-TIME-HORIZON-009",
+    "title": "Time horizon and risk alignment",
+    "tags": ["down payment", "next year", "two years", "short term", "college", "tuition", "home purchase"],
+    "guidance": "Short-term goals generally require a different risk discussion than long-term goals. Clarify timing before discussing market exposure.",
+    "suggestion": "Clarify the time horizon before discussing risk assets.",
+    "advisorResponse": "Because you may need that money soon, the timeline matters a lot. Let us separate short-term goals from long-term goals before deciding how much market risk is appropriate."
   }
 ]

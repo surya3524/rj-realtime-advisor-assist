@@ -46,6 +46,10 @@ function appendSuggestion(event) {
       ${tags}
     </div>
     <strong>${escapeHtml(event.suggestion)}</strong>
+    <div class="advisor-response">
+      <span>Advisor could say</span>
+      <p>${escapeHtml(event.advisorResponse)}</p>
+    </div>
     <p>${escapeHtml(event.rationale)}</p>
     <div class="source">${escapeHtml(sourceText)}</div>
   `;
