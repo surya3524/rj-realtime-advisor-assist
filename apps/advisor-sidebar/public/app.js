@@ -33,6 +33,10 @@ function appendTranscript(event) {
 }
 
 function appendSuggestion(event) {
+  if (event.status !== "grounded") {
+    return;
+  }
+
   const item = document.createElement("article");
   item.className = `suggestion ${event.status}`;
 
@@ -167,7 +171,7 @@ function startDemo() {
   currentCardEl.innerHTML = `
     <p class="eyebrow">Current Moment</p>
     <h3>Listening for client signal</h3>
-    <p>The sidebar will update when a client statement matches approved guidance.</p>
+    <p>The sidebar stays quiet unless a client statement matches approved guidance.</p>
   `;
 
   demoScript.forEach((line, index) => {

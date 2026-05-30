@@ -56,7 +56,9 @@ function startDemo() {
 
       if (transcriptEvent.speaker === "Client") {
         const suggestion = createSuggestion(transcriptEvent, knowledgeBase);
-        broadcast("suggestion", suggestion);
+        if (suggestion.status === "grounded") {
+          broadcast("suggestion", suggestion);
+        }
       }
 
       if (index === demoScript.length - 1) {

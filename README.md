@@ -36,6 +36,7 @@ flowchart LR
 
 This repo includes a zero-install local POC that simulates Zoom transcript events
 and proves the core product loop: transcript in, approved-source suggestion out.
+When no approved source matches, the advisor sidebar stays silent.
 
 Use the bundled or system Node.js runtime:
 
@@ -60,7 +61,7 @@ Click **Start Demo** to stream the simulated call into the advisor sidebar.
 The browser demo is static-friendly and can also run from
 `apps/advisor-sidebar/public` on GitHub Pages. It intentionally uses deterministic
 matching against `data/approved-knowledge.json`. It does not call an LLM yet. This
-keeps the first demo fully inspectable and validates the no-source/no-suggestion
+keeps the first demo fully inspectable and validates the no-source/no-visible-suggestion
 control before adding model generation.
 
 ## Share The Demo

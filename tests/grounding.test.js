@@ -39,6 +39,12 @@ assert.deepStrictEqual(unsupported.sources, []);
 assert.match(unsupported.suggestion, /No supported suggestion/);
 assert.match(unsupported.advisorResponse, /Do not invent guidance/);
 
+const visibleSuggestions = [
+  guarantee,
+  unsupported
+].filter((suggestion) => suggestion.status === "grounded");
+assert.strictEqual(visibleSuggestions.length, 1);
+
 const tax = createSuggestion(event("Can you give me tax advice for my estate?"), knowledgeBase);
 assert.strictEqual(tax.status, "grounded");
 assert.strictEqual(tax.sources[0].id, "RJ-DEMO-COMPLIANCE-004");

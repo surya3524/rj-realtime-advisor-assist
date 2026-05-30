@@ -5,7 +5,7 @@
 - A live transcript stream can update an advisor sidebar.
 - Each transcript event can be evaluated against an approved knowledge base.
 - A suggestion can be shown only when grounded in an approved source.
-- Unsupported transcript events produce an explicit no-suggestion response.
+- Unsupported transcript events do not appear in the advisor sidebar.
 - The frontend can display transcript, suggestion, rationale, matched tags, and source IDs.
 
 ## What This POC Does Not Prove Yet
@@ -22,10 +22,10 @@ The first POC does not generate free-form suggestions from a model. Instead, it 
 pre-approved suggestion text from `data/approved-knowledge.json`.
 
 That means the app can only show suggestions that already exist in the approved
-knowledge base. When no source matches, it shows:
+knowledge base. When no source matches, the sidebar stays silent:
 
 ```text
-No supported suggestion available from approved materials.
+No approved source = no visible suggestion.
 ```
 
 This is a deliberate first step. After the deterministic control works, a later
@@ -42,7 +42,7 @@ No approved source = no advisor suggestion.
 3. Click **Start Demo**.
 4. Confirm retirement, guarantee, diversification, market volatility, suitability,
    and tax/legal lines generate grounded suggestions.
-5. Confirm unrelated small talk produces an unsupported response with no source.
+5. Confirm unrelated small talk produces no visible sidebar suggestion.
 
 ## Next Validation Before Zoom
 
