@@ -6,6 +6,18 @@ const { createSuggestion } = require("../services/advisor-copilot/grounding");
 const knowledgeBase = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "data", "approved-knowledge.json"), "utf8")
 );
+const publicKnowledgeBase = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "approved-knowledge.json"), "utf8")
+);
+const demoScript = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "data", "demo-call-script.json"), "utf8")
+);
+const publicDemoScript = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "demo-call-script.json"), "utf8")
+);
+
+assert.deepStrictEqual(publicKnowledgeBase, knowledgeBase);
+assert.deepStrictEqual(publicDemoScript, demoScript);
 
 function event(text) {
   return {

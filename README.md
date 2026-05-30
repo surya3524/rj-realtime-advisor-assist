@@ -57,10 +57,29 @@ http://localhost:4173
 
 Click **Start Demo** to stream the simulated call into the advisor sidebar.
 
-The POC intentionally uses deterministic matching against
-`data/approved-knowledge.json`. It does not call an LLM yet. This keeps the first
-demo fully inspectable and validates the no-source/no-suggestion control before
-adding model generation.
+The browser demo is static-friendly and can also run from
+`apps/advisor-sidebar/public` on GitHub Pages. It intentionally uses deterministic
+matching against `data/approved-knowledge.json`. It does not call an LLM yet. This
+keeps the first demo fully inspectable and validates the no-source/no-suggestion
+control before adding model generation.
+
+## Share The Demo
+
+The repo includes a GitHub Actions workflow at
+`.github/workflows/deploy-pages.yml` that publishes
+`apps/advisor-sidebar/public` to GitHub Pages.
+
+To share with a reviewer:
+
+1. In GitHub, open the repository settings.
+2. Go to **Pages**.
+3. Set the source to **GitHub Actions**.
+4. Run the `Deploy static advisor POC` workflow or push to `main`.
+5. Share the Pages URL when the workflow finishes.
+
+If GitHub Pages is unavailable for the private repo, upload the
+`apps/advisor-sidebar/public` folder to Netlify Drop, Vercel, or any static host.
+The demo does not require server secrets.
 
 Run validation:
 

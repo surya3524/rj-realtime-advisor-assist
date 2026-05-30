@@ -5,6 +5,9 @@ const statusText = document.querySelector("#statusText");
 const connectionDot = document.querySelector("#connectionDot");
 const startBtn = document.querySelector("#startBtn");
 const stopBtn = document.querySelector("#stopBtn");
+let knowledgeBase = [];
+let demoScript = [];
+let activeTimers = [];
 
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, (char) => ({
@@ -57,14 +60,60 @@ function appendSuggestion(event) {
   suggestionsEl.prepend(item);
 }
 
-async function postJson(url) {
-  await fetch(url, { method: "POST" });
+function normalize(text) {
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function createSuggestion(transcriptEvent) {
+  const normalizedText = normalize(transcriptEvent.text);
+  const matches = knowledgeBase
+    .map((source) => {
+      const matchedTags = source.tags.filter((tag) => normalizedText.includes(normalize(tag)));
+      return { source, matchedTags, score: matchedTags.length };
+    })
+    .filter((match) => match.score > 0)
+    .sort((a, b) => b.score - a.score || a.source.id.localeCompare(b.source.id));
+
+  if (matches.length === 0) {
+    return {
+      id: `suggestion-${transcriptEvent.id}`,
+      transcriptEventId: transcriptEvent.id,
+      status: "unsupported",
+      severity: "none",
+      suggestion: "No supported suggestion available from approved materials.",
+      advisorResponse: "Stay with discovery or ask a neutral clarifying question. Do not invent guidance.",
+      rationale: "The transcript did not match any approved demo knowledge source.",
+      sources: [],
+      matchedTags: []
+    };
+  }
+
+  const best = matches[0];
+  return {
+    id: `suggestion-${transcriptEvent.id}`,
+    transcriptEventId: transcriptEvent.id,
+    status: "grounded",
+    severity: best.source.id.includes("COMPLIANCE") || best.source.id.includes("RISK") ? "high" : "medium",
+    suggestion: best.source.suggestion,
+    advisorResponse: best.source.advisorResponse,
+    rationale: best.source.guidance,
+    sources: [{ id: best.source.id, title: best.source.title }],
+    matchedTags: best.matchedTags
+  };
+}
+
+async function loadJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Unable to load ${path}`);
+  }
+  return response.json();
 }
 
 async function loadKnowledge() {
-  const response = await fetch("/api/knowledge");
-  const knowledge = await response.json();
-  knowledgeEl.innerHTML = knowledge.map((item) => `
+  knowledgeBase = await loadJson("data/approved-knowledge.json");
+  demoScript = await loadJson("data/demo-call-script.json");
+  knowledgeEl.innerHTML = knowledgeBase.map((item) => `
     <article class="knowledge-item">
       <strong>${escapeHtml(item.id)}: ${escapeHtml(item.title)}</strong>
       <p>${escapeHtml(item.guidance)}</p>
@@ -72,42 +121,56 @@ async function loadKnowledge() {
   `).join("");
 }
 
-function connectEvents() {
-  const events = new EventSource("/events");
-
-  events.addEventListener("connected", () => {
-    connectionDot.classList.add("connected");
-    statusText.textContent = "Connected. Start the simulated Zoom transcript when ready.";
-  });
-
-  events.addEventListener("demo-status", (message) => {
-    const event = JSON.parse(message.data);
-    statusText.textContent = event.message;
-  });
-
-  events.addEventListener("transcript", (message) => {
-    appendTranscript(JSON.parse(message.data));
-  });
-
-  events.addEventListener("suggestion", (message) => {
-    appendSuggestion(JSON.parse(message.data));
-  });
-
-  events.onerror = () => {
-    connectionDot.classList.remove("connected");
-    statusText.textContent = "Event stream disconnected. Refresh after restarting the server.";
-  };
+function stopDemo() {
+  activeTimers.forEach(clearTimeout);
+  activeTimers = [];
+  statusText.textContent = "Simulated Zoom transcript stopped.";
 }
 
-startBtn.addEventListener("click", async () => {
+function startDemo() {
+  stopDemo();
   transcriptEl.innerHTML = "";
   suggestionsEl.innerHTML = "";
-  await postJson("/api/demo/start");
+  statusText.textContent = "Simulated Zoom transcript started.";
+
+  demoScript.forEach((line, index) => {
+    const timer = setTimeout(() => {
+      const transcriptEvent = {
+        id: index + 1,
+        speaker: line.speaker,
+        text: line.text,
+        timestamp: new Date().toISOString()
+      };
+
+      appendTranscript(transcriptEvent);
+
+      if (transcriptEvent.speaker === "Client") {
+        appendSuggestion(createSuggestion(transcriptEvent));
+      }
+
+      if (index === demoScript.length - 1) {
+        statusText.textContent = "Simulated Zoom transcript completed.";
+        activeTimers = [];
+      }
+    }, index * 2200);
+
+    activeTimers.push(timer);
+  });
+}
+
+startBtn.addEventListener("click", () => {
+  startDemo();
 });
 
-stopBtn.addEventListener("click", async () => {
-  await postJson("/api/demo/stop");
+stopBtn.addEventListener("click", () => {
+  stopDemo();
 });
 
-loadKnowledge();
-connectEvents();
+loadKnowledge()
+  .then(() => {
+    connectionDot.classList.add("connected");
+    statusText.textContent = "Demo ready. Start the simulated Zoom transcript when ready.";
+  })
+  .catch(() => {
+    statusText.textContent = "Demo data could not be loaded.";
+  });

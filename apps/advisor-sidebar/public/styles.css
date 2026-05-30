@@ -22,6 +22,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--bg);
+  min-width: 780px;
 }
 
 button {
@@ -50,7 +51,7 @@ button.secondary:hover {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 420px;
+  grid-template-columns: minmax(0, 1fr) clamp(360px, 38vw, 500px);
   min-height: 100vh;
 }
 
@@ -66,6 +67,10 @@ button.secondary:hover {
 }
 
 .sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -79,6 +84,10 @@ button.secondary:hover {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+}
+
+.sidebar .section-header {
+  display: block;
 }
 
 .actions {
@@ -164,7 +173,8 @@ h2 {
 }
 
 .sidebar-section {
-  min-height: 0;
+  flex: 0 0 auto;
+  min-height: auto;
 }
 
 .suggestions,
@@ -177,6 +187,7 @@ h2 {
 
 .suggestion,
 .knowledge-item {
+  overflow: hidden;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -247,23 +258,20 @@ h2 {
 .advisor-response p {
   margin: 0;
   color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 .source {
   margin-top: 10px;
   font-size: 13px;
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
-@media (max-width: 900px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
+.source-panel {
+  margin-top: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 620px) {
