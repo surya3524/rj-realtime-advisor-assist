@@ -253,6 +253,11 @@ h3 {
   background: #eef1f4;
 }
 
+.trust-chip.grounded {
+  color: var(--accent);
+  background: var(--soft-green);
+}
+
 .current-card {
   padding: 16px;
   border: 1px solid #a8d6ca;
@@ -275,6 +280,62 @@ h3 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
+}
+
+.assist-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.assist-button {
+  width: 100%;
+  min-height: 46px;
+  font-size: 15px;
+}
+
+.assist-options {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.assist-options[hidden] {
+  display: none;
+}
+
+.assist-options button {
+  min-height: 38px;
+  width: 100%;
+  color: var(--ink);
+  background: #eef3f8;
+  text-align: left;
+}
+
+.assist-options button:hover {
+  background: #dce8f2;
+}
+
+.custom-question {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.custom-question input {
+  min-height: 38px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+  color: var(--ink);
+  font: inherit;
+  text-transform: none;
 }
 
 .suggestions,
@@ -367,6 +428,31 @@ h3 {
   margin: 0;
   color: var(--ink);
   overflow-wrap: anywhere;
+}
+
+.context-block {
+  margin-top: 12px;
+}
+
+.context-block span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.context-block ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.context-block li + li {
+  margin-top: 4px;
 }
 
 .source {

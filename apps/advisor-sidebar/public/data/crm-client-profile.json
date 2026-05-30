@@ -1,0 +1,19 @@
+{
+  "clientName": "Demo Household",
+  "age": 58,
+  "targetRetirementAge": 65,
+  "monthlySpendingGoal": 8000,
+  "riskTolerance": "Moderate",
+  "liquidityPreference": "Keep 12-18 months of expenses accessible",
+  "portfolioNotes": [
+    "Approximately 40 percent of portfolio is employer company stock",
+    "Client is concerned about retirement income reliability",
+    "Spouse may stop working next year"
+  ],
+  "openTasks": [
+    "Review emergency reserve target",
+    "Discuss concentration risk in employer stock",
+    "Confirm retirement income gap assumptions"
+  ],
+  "lastMeetingNotes": "Client asked for a second opinion before making new product decisions. Advisor should gather suitability context before discussing products."
+}

@@ -35,8 +35,9 @@ flowchart LR
 ## Run the Concept POC
 
 This repo includes a zero-install local POC that simulates Zoom transcript events
-and proves the core product loop: transcript in, approved-source suggestion out.
-When no approved source matches, the advisor sidebar stays silent.
+and proves the core product loop: listen quietly, let the advisor ask for help,
+then answer using the conversation so far, approved demo knowledge, and mocked RJ
+CRM context.
 
 Use the bundled or system Node.js runtime:
 
@@ -56,13 +57,15 @@ Then open:
 http://localhost:4173
 ```
 
-Click **Start Demo** to stream the simulated call into the advisor sidebar.
+Click **Start Demo** to stream the simulated call. The sidebar stays in listening
+mode. Click **Ask Assist** and choose **What should I ask next?** to see a grounded
+answer based on the conversation so far.
 
 The browser demo is static-friendly and can also run from
 `apps/advisor-sidebar/public` on GitHub Pages. It intentionally uses deterministic
-matching against `data/approved-knowledge.json`. It does not call an LLM yet. This
-keeps the first demo fully inspectable and validates the no-source/no-visible-suggestion
-control before adding model generation.
+matching against `data/approved-knowledge.json` and a mocked profile at
+`data/crm-client-profile.json`. It does not call an LLM yet. This keeps the first
+demo fully inspectable before adding model generation.
 
 ## Share The Demo
 

@@ -2,6 +2,7 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const { createSuggestion } = require("../services/advisor-copilot/grounding");
+const { buildNextQuestionAnswer } = require("../services/advisor-copilot/assist");
 
 const knowledgeBase = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "data", "approved-knowledge.json"), "utf8")
@@ -15,9 +16,16 @@ const demoScript = JSON.parse(
 const publicDemoScript = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "demo-call-script.json"), "utf8")
 );
+const crmProfile = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "data", "crm-client-profile.json"), "utf8")
+);
+const publicCrmProfile = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "crm-client-profile.json"), "utf8")
+);
 
 assert.deepStrictEqual(publicKnowledgeBase, knowledgeBase);
 assert.deepStrictEqual(publicDemoScript, demoScript);
+assert.deepStrictEqual(publicCrmProfile, crmProfile);
 
 function event(text) {
   return {
@@ -53,5 +61,18 @@ const fees = createSuggestion(event("How do you get paid and what fees would I b
 assert.strictEqual(fees.status, "grounded");
 assert.strictEqual(fees.sources[0].id, "RJ-DEMO-FEES-008");
 assert.match(fees.advisorResponse, /review costs clearly/i);
+
+const conversationSoFar = demoScript.slice(0, 7).map((line, index) => ({
+  id: index + 1,
+  speaker: line.speaker,
+  text: line.text,
+  timestamp: "2026-05-30T00:00:00.000Z"
+}));
+const nextQuestion = buildNextQuestionAnswer(conversationSoFar, knowledgeBase, crmProfile);
+assert.match(nextQuestion.answer, /cash you need available/i);
+assert(nextQuestion.why.some((reason) => /spouse may stop working next year/i.test(reason)));
+assert(nextQuestion.why.some((reason) => /unexpected expenses/i.test(reason)));
+assert(nextQuestion.why.some((reason) => /RJ CRM liquidity note/i.test(reason)));
+assert(nextQuestion.sources.some((source) => source.includes("RJ-DEMO-LIQUIDITY-007")));
 
 console.log("Grounding tests passed.");

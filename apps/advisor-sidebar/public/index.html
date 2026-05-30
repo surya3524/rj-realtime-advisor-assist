@@ -48,21 +48,36 @@
         <header class="sidebar-top">
           <div>
             <p class="eyebrow">Advisor Sidebar</p>
-            <h2>Live Coaching</h2>
+            <h2>Listening Mode</h2>
           </div>
-          <span id="groundingStatus" class="trust-chip">Grounded only</span>
+          <span id="groundingStatus" class="trust-chip">Quiet</span>
         </header>
 
         <section id="currentCard" class="current-card empty" aria-live="polite">
-          <p class="eyebrow">Current Moment</p>
-          <h3>Waiting for client signal</h3>
-          <p>Start the demo to see an advisor-ready response with approved source evidence.</p>
+          <p class="eyebrow">Listening</p>
+          <h3>No live nudges</h3>
+          <p>The assistant captures context quietly. Ask for help when you want a grounded answer.</p>
+        </section>
+
+        <section class="assist-panel" aria-label="Advisor assistance">
+          <button id="assistBtn" class="assist-button" type="button">Ask Assist</button>
+          <div id="assistOptions" class="assist-options" hidden>
+            <button type="button" data-assist="next-question">1. What should I ask next?</button>
+            <button type="button" data-assist="summarize">2. Summarize client concerns</button>
+            <button type="button" data-assist="risk-check">3. Check risk or compliance issue</button>
+            <button type="button" data-assist="wording">4. Draft advisor wording</button>
+            <button type="button" data-assist="crm">5. Pull RJ CRM context</button>
+            <label class="custom-question">
+              <span>Random question</span>
+              <input id="customQuestion" type="text" placeholder="Ask using conversation context...">
+            </label>
+          </div>
         </section>
 
         <section class="sidebar-section">
           <div class="section-header">
-            <p class="eyebrow">Decision Trail</p>
-            <h2>Useful Moments</h2>
+            <p class="eyebrow">Assist History</p>
+            <h2>Advisor-Requested Answers</h2>
           </div>
           <div id="suggestions" class="suggestions" aria-live="polite"></div>
         </section>

@@ -2,11 +2,11 @@
 
 ## What This POC Proves
 
-- A live transcript stream can update an advisor sidebar.
-- Each transcript event can be evaluated against an approved knowledge base.
-- A suggestion can be shown only when grounded in an approved source.
-- Unsupported transcript events do not appear in the advisor sidebar.
-- The frontend can display transcript, suggestion, rationale, matched tags, and source IDs.
+- A live transcript stream can build conversation context quietly.
+- The advisor can request assistance only when needed.
+- The assist answer can use conversation-so-far, approved knowledge, and mocked CRM context.
+- Unsupported or irrelevant transcript events do not create visible sidebar output.
+- The frontend can display an advisor-requested answer with rationale and source IDs.
 
 ## What This POC Does Not Prove Yet
 
@@ -19,10 +19,11 @@
 ## No-Hallucination Control Used Here
 
 The first POC does not generate free-form suggestions from a model. Instead, it uses
-pre-approved suggestion text from `data/approved-knowledge.json`.
+pre-approved guidance from `data/approved-knowledge.json` and mocked client context
+from `data/crm-client-profile.json`.
 
-That means the app can only show suggestions that already exist in the approved
-knowledge base. When no source matches, the sidebar stays silent:
+That means the app only answers when the advisor asks and the answer can be tied to
+approved demo context. When no source matches, the sidebar stays silent:
 
 ```text
 No approved source = no visible suggestion.
@@ -40,9 +41,10 @@ No approved source = no advisor suggestion.
 1. Start the server.
 2. Open `http://localhost:4173`.
 3. Click **Start Demo**.
-4. Confirm retirement, guarantee, diversification, market volatility, suitability,
-   and tax/legal lines generate grounded suggestions.
-5. Confirm unrelated small talk produces no visible sidebar suggestion.
+4. Wait until the client mentions cash needs, spouse stopping work, and unexpected expenses.
+5. Click **Ask Assist**.
+6. Choose **What should I ask next?**.
+7. Confirm the answer asks about 12-24 month cash needs and cites conversation context, CRM liquidity notes, and `RJ-DEMO-LIQUIDITY-007`.
 
 ## Next Validation Before Zoom
 
