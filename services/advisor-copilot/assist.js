@@ -39,7 +39,27 @@ function buildNextQuestionAnswer(conversationEvents, knowledgeBase, crmProfile) 
   };
 }
 
+function buildStockUpsideAnswer(question, conversationEvents, knowledgeBase, crmProfile) {
+  return {
+    label: `Advisor asked: ${question}`,
+    title: "Concentrated stock upside question",
+    answer: "I would not frame this as trying to predict whether TSLA will triple. A better client question is: if the stock rises sharply after we reduce concentration, how much regret would feel acceptable compared with the risk of keeping too much in one company?",
+    why: [
+      "Client has a large concentrated stock position and is worried about reducing it.",
+      "The useful advisor move is to explore upside regret, downside risk, and concentration tolerance rather than forecast a single stock.",
+      ...(crmProfile.portfolioNotes || []).filter((note) => /40 percent|company stock|concentration/i.test(note))
+    ],
+    sources: [
+      sourceRef(findKnowledgeById(knowledgeBase, "RJ-DEMO-DIVERSIFY-002")),
+      sourceRef(findKnowledgeById(knowledgeBase, "RJ-DEMO-SUITABILITY-005")),
+      sourceRef(findKnowledgeById(knowledgeBase, "RJ-DEMO-RISK-001")),
+      "RJ CRM demo profile: concentrated stock note"
+    ]
+  };
+}
+
 module.exports = {
   buildNextQuestionAnswer,
+  buildStockUpsideAnswer,
   transcriptIncludes
 };

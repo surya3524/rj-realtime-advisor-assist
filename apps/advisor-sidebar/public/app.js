@@ -145,8 +145,41 @@ function buildCrmAnswer() {
   };
 }
 
+function buildStockUpsideAnswer(question = "What if TSLA becomes 3x?") {
+  const diversify = findKnowledgeById("RJ-DEMO-DIVERSIFY-002");
+  const suitability = findKnowledgeById("RJ-DEMO-SUITABILITY-005");
+  const risk = findKnowledgeById("RJ-DEMO-RISK-001");
+
+  return {
+    label: `Advisor asked: ${question}`,
+    title: "Concentrated stock upside question",
+    answer: "I would not frame this as trying to predict whether TSLA will triple. A better client question is: if the stock rises sharply after we reduce concentration, how much regret would feel acceptable compared with the risk of keeping too much in one company?",
+    why: [
+      "Client has a large concentrated stock position and is worried about reducing it.",
+      "The useful advisor move is to explore upside regret, downside risk, and concentration tolerance rather than forecast a single stock.",
+      "RJ CRM notes approximately 40 percent of the portfolio is employer company stock."
+    ],
+    sources: [
+      sourceRef(diversify),
+      sourceRef(suitability),
+      sourceRef(risk),
+      "RJ CRM demo profile: concentrated stock note"
+    ]
+  };
+}
+
 function buildCustomAnswer(question) {
   const lower = normalize(question);
+  if (
+    lower.includes("tsla") ||
+    lower.includes("tesla") ||
+    lower.includes("3x") ||
+    lower.includes("triple") ||
+    lower.includes("upside") ||
+    lower.includes("stock becomes")
+  ) {
+    return buildStockUpsideAnswer(question);
+  }
   if (lower.includes("ask") || lower.includes("next")) return buildNextQuestionAnswer();
   if (lower.includes("risk") || lower.includes("compliance")) return buildRiskAnswer();
   if (lower.includes("fee") || lower.includes("paid")) {
@@ -177,7 +210,8 @@ function buildAssistAnswer(kind, question = "") {
     summarize: buildSummaryAnswer,
     "risk-check": buildRiskAnswer,
     wording: buildWordingAnswer,
-    crm: buildCrmAnswer
+    crm: buildCrmAnswer,
+    "stock-upside": buildStockUpsideAnswer
   };
 
   return builders[kind] ? builders[kind]() : buildCustomAnswer(question);

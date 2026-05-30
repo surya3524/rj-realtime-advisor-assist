@@ -2,7 +2,7 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const { createSuggestion } = require("../services/advisor-copilot/grounding");
-const { buildNextQuestionAnswer } = require("../services/advisor-copilot/assist");
+const { buildNextQuestionAnswer, buildStockUpsideAnswer } = require("../services/advisor-copilot/assist");
 
 const knowledgeBase = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "data", "approved-knowledge.json"), "utf8")
@@ -74,5 +74,13 @@ assert(nextQuestion.why.some((reason) => /spouse may stop working next year/i.te
 assert(nextQuestion.why.some((reason) => /unexpected expenses/i.test(reason)));
 assert(nextQuestion.why.some((reason) => /RJ CRM liquidity note/i.test(reason)));
 assert(nextQuestion.sources.some((source) => source.includes("RJ-DEMO-LIQUIDITY-007")));
+
+const stockUpside = buildStockUpsideAnswer("what if TSLA becomes 3x?", conversationSoFar, knowledgeBase, crmProfile);
+assert.match(stockUpside.title, /Concentrated stock upside/i);
+assert.match(stockUpside.answer, /not frame this as trying to predict/i);
+assert.match(stockUpside.answer, /regret/i);
+assert(stockUpside.sources.some((source) => source.includes("RJ-DEMO-DIVERSIFY-002")));
+assert(stockUpside.sources.some((source) => source.includes("RJ-DEMO-SUITABILITY-005")));
+assert(stockUpside.why.some((reason) => /40 percent|company stock|concentrated/i.test(reason)));
 
 console.log("Grounding tests passed.");
