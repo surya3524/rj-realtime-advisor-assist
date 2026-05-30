@@ -13,6 +13,7 @@
           <div>
             <p class="eyebrow">Concept POC</p>
             <h1>Realtime Advisor Assist</h1>
+            <p class="subhead">Simulated client conversation with grounded advisor coaching.</p>
           </div>
           <div class="actions">
             <button id="startBtn" type="button">Start Demo</button>
@@ -25,25 +26,59 @@
           <span id="statusText">Demo ready. Start the simulated Zoom transcript when ready.</span>
         </div>
 
+        <div class="call-meta" aria-label="Demo call context">
+          <div>
+            <span>Client</span>
+            <strong>Retirement review</strong>
+          </div>
+          <div>
+            <span>Scenario</span>
+            <strong>Risk, income, fees</strong>
+          </div>
+          <div>
+            <span>Mode</span>
+            <strong>Advisor assist</strong>
+          </div>
+        </div>
+
         <div id="transcript" class="transcript" aria-live="polite"></div>
       </section>
 
       <aside class="sidebar" aria-label="Advisor sidebar">
+        <header class="sidebar-top">
+          <div>
+            <p class="eyebrow">Advisor Sidebar</p>
+            <h2>Live Coaching</h2>
+          </div>
+          <span id="groundingStatus" class="trust-chip">Grounded only</span>
+        </header>
+
+        <section id="currentCard" class="current-card empty" aria-live="polite">
+          <p class="eyebrow">Current Moment</p>
+          <h3>Waiting for client signal</h3>
+          <p>Start the demo to see an advisor-ready response with approved source evidence.</p>
+        </section>
+
         <section class="sidebar-section">
           <div class="section-header">
-            <p class="eyebrow">Advisor Sidebar</p>
-            <h2>Grounded Suggestions</h2>
+            <p class="eyebrow">Decision Trail</p>
+            <h2>Recent Suggestions</h2>
           </div>
           <div id="suggestions" class="suggestions" aria-live="polite"></div>
         </section>
 
-        <section class="sidebar-section source-panel">
-          <div class="section-header">
-            <p class="eyebrow">Approved Sources</p>
-            <h2>Knowledge Base</h2>
+        <details class="sidebar-section source-panel">
+          <summary>
+            <div>
+              <p class="eyebrow">Approved Sources</p>
+              <h2>Evidence Library</h2>
+            </div>
+          </summary>
+          <div class="source-note">
+            The demo only uses these approved snippets. No source match means no advice.
           </div>
           <div id="knowledge" class="knowledge-list"></div>
-        </section>
+        </details>
       </aside>
     </main>
 
