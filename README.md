@@ -32,6 +32,48 @@ flowchart LR
   Guardrails --> Audit[Immutable Audit Events]
 ```
 
+## Run the Concept POC
+
+This repo includes a zero-install local POC that simulates Zoom transcript events
+and proves the core product loop: transcript in, approved-source suggestion out.
+
+Use the bundled or system Node.js runtime:
+
+```bash
+npm start
+```
+
+If `npm` is unavailable, run the server directly:
+
+```bash
+node services/poc-server/server.js
+```
+
+Then open:
+
+```text
+http://localhost:4173
+```
+
+Click **Start Demo** to stream the simulated call into the advisor sidebar.
+
+The POC intentionally uses deterministic matching against
+`data/approved-knowledge.json`. It does not call an LLM yet. This keeps the first
+demo fully inspectable and validates the no-source/no-suggestion control before
+adding model generation.
+
+Run validation:
+
+```bash
+npm test
+```
+
+Or directly:
+
+```bash
+node tests/grounding.test.js
+```
+
 ## Implementation Plan
 
 1. Prove capture path with Zoom using the approved permission model.

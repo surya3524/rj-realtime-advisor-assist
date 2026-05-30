@@ -1,0 +1,13 @@
+{
+  "name": "rj-realtime-advisor-assist",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Concept POC for realtime advisor suggestions from simulated Zoom transcripts.",
+  "scripts": {
+    "start": "node services/poc-server/server.js",
+    "test": "node tests/grounding.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

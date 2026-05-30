@@ -1,0 +1,44 @@
+[
+  {
+    "id": "RJ-DEMO-RISK-001",
+    "title": "Investment risk and guarantees",
+    "tags": ["guarantee", "guaranteed", "risk", "lose money", "loss"],
+    "guidance": "Do not describe market investments as guaranteed. Explain that investments involve risk, including possible loss of principal.",
+    "suggestion": "Clarify that market investments are not guaranteed and involve risk, including possible loss of principal."
+  },
+  {
+    "id": "RJ-DEMO-DIVERSIFY-002",
+    "title": "Diversification explanation",
+    "tags": ["diversification", "diversify", "spread out", "spread it out", "single stock", "portfolio"],
+    "guidance": "Diversification can help manage concentration risk, but it does not guarantee profit or protect against loss.",
+    "suggestion": "Explain that diversification helps manage concentration risk but does not guarantee gains or prevent losses."
+  },
+  {
+    "id": "RJ-DEMO-RETIREMENT-003",
+    "title": "Retirement planning discovery",
+    "tags": ["retirement", "retire", "income", "401k", "ira"],
+    "guidance": "Ask discovery questions about time horizon, income needs, savings, risk tolerance, and tax considerations before discussing strategies.",
+    "suggestion": "Ask about retirement timeline, income needs, savings, and risk tolerance before discussing possible strategies."
+  },
+  {
+    "id": "RJ-DEMO-COMPLIANCE-004",
+    "title": "Complex tax or legal requests",
+    "tags": ["tax advice", "legal advice", "estate", "will", "lawsuit", "irs"],
+    "guidance": "Advisors should avoid providing legal or tax advice and should recommend consulting a qualified tax or legal professional.",
+    "suggestion": "Avoid giving legal or tax advice; suggest the client consult a qualified tax or legal professional."
+  },
+  {
+    "id": "RJ-DEMO-SUITABILITY-005",
+    "title": "Suitability before recommendations",
+    "tags": ["recommend", "should i buy", "best investment", "suitable", "right for me"],
+    "guidance": "Before making investment recommendations, gather relevant client profile details and consider suitability.",
+    "suggestion": "Pause before making a recommendation and gather client profile details needed for suitability."
+  },
+  {
+    "id": "RJ-DEMO-VOLATILITY-006",
+    "title": "Market volatility response",
+    "tags": ["market down", "volatility", "recession", "panic", "sell everything"],
+    "guidance": "Encourage a calm review of goals, time horizon, liquidity needs, and risk tolerance during volatile markets.",
+    "suggestion": "Acknowledge the concern and suggest reviewing goals, time horizon, liquidity needs, and risk tolerance before reacting."
+  }
+]
