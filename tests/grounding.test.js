@@ -22,10 +22,17 @@ const crmProfile = JSON.parse(
 const publicCrmProfile = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "crm-client-profile.json"), "utf8")
 );
+const marketResearch = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "data", "market-research.json"), "utf8")
+);
+const publicMarketResearch = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "market-research.json"), "utf8")
+);
 
 assert.deepStrictEqual(publicKnowledgeBase, knowledgeBase);
 assert.deepStrictEqual(publicDemoScript, demoScript);
 assert.deepStrictEqual(publicCrmProfile, crmProfile);
+assert.deepStrictEqual(publicMarketResearch, marketResearch);
 
 function event(text) {
   return {
@@ -75,12 +82,15 @@ assert(nextQuestion.why.some((reason) => /unexpected expenses/i.test(reason)));
 assert(nextQuestion.why.some((reason) => /RJ CRM liquidity note/i.test(reason)));
 assert(nextQuestion.sources.some((source) => source.includes("RJ-DEMO-LIQUIDITY-007")));
 
-const stockUpside = buildStockUpsideAnswer("what if TSLA becomes 3x?", conversationSoFar, knowledgeBase, crmProfile);
-assert.match(stockUpside.title, /Concentrated stock upside/i);
-assert.match(stockUpside.answer, /not frame this as trying to predict/i);
-assert.match(stockUpside.answer, /regret/i);
+const stockUpside = buildStockUpsideAnswer("what if TSLA becomes 3x?", conversationSoFar, knowledgeBase, crmProfile, marketResearch);
+assert.match(stockUpside.title, /TSLA 3x claim/i);
+assert.match(stockUpside.answer, /50% VOO, 30% TSLA, 20% GLD/i);
+assert.match(stockUpside.answer, /conservative profile/i);
+assert.match(stockUpside.answer, /speculative upside case/i);
+assert(stockUpside.why.some((reason) => /Latest RJ CRM allocation: 50% VOO, 30% TSLA, 20% GLD/i.test(reason)));
+assert(stockUpside.why.some((reason) => /3x move/i.test(reason)));
 assert(stockUpside.sources.some((source) => source.includes("RJ-DEMO-DIVERSIFY-002")));
 assert(stockUpside.sources.some((source) => source.includes("RJ-DEMO-SUITABILITY-005")));
-assert(stockUpside.why.some((reason) => /40 percent|company stock|concentrated/i.test(reason)));
+assert(stockUpside.sources.some((source) => source.includes("Market research snapshot")));
 
 console.log("Grounding tests passed.");

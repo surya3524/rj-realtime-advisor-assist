@@ -14,6 +14,7 @@ const customQuestionEl = document.querySelector("#customQuestion");
 let knowledgeBase = [];
 let demoScript = [];
 let crmProfile = {};
+let marketResearch = {};
 let activeTimers = [];
 let conversationEvents = [];
 
@@ -53,6 +54,17 @@ function transcriptIncludes(...phrases) {
 
 function sourceRef(source) {
   return source ? `${source.id}: ${source.title}` : "No approved source.";
+}
+
+function allocationSummary() {
+  return (crmProfile.currentAllocation || [])
+    .map((holding) => `${holding.allocation}% ${holding.symbol}`)
+    .join(", ");
+}
+
+function priorConservativeNote() {
+  return (crmProfile.riskProfileHistory || [])
+    .find((entry) => entry.profile === "Conservative");
 }
 
 function buildNextQuestionAnswer() {
@@ -149,21 +161,25 @@ function buildStockUpsideAnswer(question = "What if TSLA becomes 3x?") {
   const diversify = findKnowledgeById("RJ-DEMO-DIVERSIFY-002");
   const suitability = findKnowledgeById("RJ-DEMO-SUITABILITY-005");
   const risk = findKnowledgeById("RJ-DEMO-RISK-001");
+  const tsla = marketResearch.symbols?.TSLA || {};
+  const conservative = priorConservativeNote();
 
   return {
     label: `Advisor asked: ${question}`,
-    title: "Concentrated stock upside question",
-    answer: "I would not frame this as trying to predict whether TSLA will triple. A better client question is: if the stock rises sharply after we reduce concentration, how much regret would feel acceptable compared with the risk of keeping too much in one company?",
+    title: "TSLA 3x claim vs client profile",
+    answer: `Current CRM allocation is ${allocationSummary()}. TSLA is a 30% single-stock position, and the CRM note from ${conservative?.date || "2023"} says the client wanted a conservative profile. Based on the market snapshot, TSLA would need to reach about $${Number(tsla.oneYearTriplePrice || 0).toLocaleString()} for a 3x move from about $${Number(tsla.lastPrice || 0).toLocaleString()}. Current observed analyst targets in the snapshot are far below that level, so I would treat 3x in one year as a speculative upside case, not the planning base case.`,
     why: [
-      "Client has a large concentrated stock position and is worried about reducing it.",
-      "The useful advisor move is to explore upside regret, downside risk, and concentration tolerance rather than forecast a single stock.",
-      "RJ CRM notes approximately 40 percent of the portfolio is employer company stock."
+      `Latest RJ CRM allocation: ${allocationSummary()}.`,
+      conservative ? `RJ CRM ${conservative.date} risk note: ${conservative.note}` : "RJ CRM includes prior conservative-risk context.",
+      ...(tsla.fundamentalNotes || []),
+      "Suggested advisor question: If TSLA rises sharply after reducing the position, how much regret would be acceptable compared with the risk of keeping 30% in one stock?"
     ],
     sources: [
       sourceRef(diversify),
       sourceRef(suitability),
       sourceRef(risk),
-      "RJ CRM demo profile: concentrated stock note"
+      "RJ CRM demo profile: current allocation and risk history",
+      `Market research snapshot as of ${marketResearch.asOf || "demo date"}: TSLA price/target context`
     ]
   };
 }
@@ -264,6 +280,7 @@ async function loadKnowledge() {
   knowledgeBase = await loadJson("data/approved-knowledge.json");
   demoScript = await loadJson("data/demo-call-script.json");
   crmProfile = await loadJson("data/crm-client-profile.json");
+  marketResearch = await loadJson("data/market-research.json");
   knowledgeEl.innerHTML = knowledgeBase.map((item) => `
     <article class="knowledge-item">
       <strong>${escapeHtml(item.id)}: ${escapeHtml(item.title)}</strong>
