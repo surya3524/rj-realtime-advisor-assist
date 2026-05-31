@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zoom Transcript Context POC</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="workspace">
+      <section class="meeting">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Zoom Context POC</p>
+            <h1>Conversation Context for Advisor Questions</h1>
+            <p class="subhead">Capture or import a meeting transcript, then ask for grounded help using the discussion so far.</p>
+          </div>
+          <div class="controls">
+            <button id="simulateBtn" type="button">Run Demo Call</button>
+            <button id="listenBtn" type="button" class="secondary">Start Mic</button>
+            <button id="clearBtn" type="button" class="ghost">Clear</button>
+          </div>
+        </header>
+
+        <div class="capture-status">
+          <span id="statusDot" class="dot"></span>
+          <span id="statusText">Ready. Run the demo call or paste a Zoom transcript.</span>
+        </div>
+
+        <section class="input-panel">
+          <label for="pasteTranscript">Paste Zoom transcript or meeting notes</label>
+          <textarea id="pasteTranscript" placeholder="Client: I have about 50% VOO, 30% TSLA, and 20% gold..."></textarea>
+          <button id="importBtn" type="button" class="secondary">Import Transcript</button>
+        </section>
+
+        <section class="transcript-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Transcript Context</p>
+              <h2>Conversation So Far</h2>
+            </div>
+            <span id="contextCount">0 turns</span>
+          </div>
+          <div id="transcript" class="transcript" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <aside class="assist">
+        <header>
+          <p class="eyebrow">Advisor Assist</p>
+          <h2>Ask with Context</h2>
+        </header>
+
+        <section class="question-card">
+          <label for="advisorQuestion">Advisor question</label>
+          <textarea id="advisorQuestion">Client thinks TSLA can triple in a year. How should I respond?</textarea>
+          <button id="askBtn" type="button">Answer From Context</button>
+        </section>
+
+        <section id="answerCard" class="answer-card empty" aria-live="polite">
+          <p class="eyebrow">Waiting</p>
+          <h3>No answer yet</h3>
+          <p>Ask a question after transcript context is available.</p>
+        </section>
+
+        <section class="crm-card">
+          <p class="eyebrow">Mock RJ CRM</p>
+          <h3>Client Memory</h3>
+          <div id="crmSummary"></div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

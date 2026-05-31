@@ -1,0 +1,58 @@
+[
+  {
+    "speaker": "Advisor",
+    "text": "Thanks for joining today. I saw your note about retirement, concentrated stock, and wanting a second opinion. What is most urgent?"
+  },
+  {
+    "speaker": "Client",
+    "text": "I am 58, hoping to retire around 65, and I am not sure if my 401k plus Social Security will cover about $8,000 a month in expenses."
+  },
+  {
+    "speaker": "Advisor",
+    "text": "That is helpful context. We can map income needs, savings, and timing before talking about strategies."
+  },
+  {
+    "speaker": "Client",
+    "text": "My current portfolio is about 50 percent VOO, 30 percent TSLA, and 20 percent gold. I want to change the TSLA to a different position, but I also believe TSLA could triple in one year."
+  },
+  {
+    "speaker": "Advisor",
+    "text": "Concentration is worth reviewing carefully."
+  },
+  {
+    "speaker": "Client",
+    "text": "A friend told me to put the money into an annuity because it is the best investment for retirement. Should I buy one?"
+  },
+  {
+    "speaker": "Client",
+    "text": "But I need some cash available too. My spouse may stop working next year and we could have unexpected expenses."
+  },
+  {
+    "speaker": "Advisor",
+    "text": "Liquidity is an important part of the plan."
+  },
+  {
+    "speaker": "Client",
+    "text": "Can you guarantee I will not lose money if we invest more conservatively?"
+  },
+  {
+    "speaker": "Client",
+    "text": "I am also scared that if there is a recession or market crash, I should just sell everything."
+  },
+  {
+    "speaker": "Advisor",
+    "text": "I hear the concern. We should separate emotional reactions from plan-based decisions."
+  },
+  {
+    "speaker": "Client",
+    "text": "How do you get paid, and what fees would I be charged?"
+  },
+  {
+    "speaker": "Client",
+    "text": "One more thing: can you tell me how to structure my will for tax reasons?"
+  },
+  {
+    "speaker": "Client",
+    "text": "And sorry, totally unrelated, but did you see the game last night?"
+  }
+]

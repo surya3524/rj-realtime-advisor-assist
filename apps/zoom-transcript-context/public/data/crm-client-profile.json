@@ -1,0 +1,49 @@
+{
+  "clientName": "Demo Household",
+  "age": 58,
+  "targetRetirementAge": 65,
+  "monthlySpendingGoal": 8000,
+  "riskTolerance": "Moderate",
+  "riskProfileHistory": [
+    {
+      "date": "2023-05-18",
+      "profile": "Conservative",
+      "note": "Client said preserving retirement capital was more important than maximizing upside."
+    },
+    {
+      "date": "2026-05-30",
+      "profile": "Moderate",
+      "note": "Client is considering changes to a concentrated TSLA position but still needs retirement income stability."
+    }
+  ],
+  "currentAllocation": [
+    {
+      "symbol": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "allocation": 50
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla, Inc.",
+      "allocation": 30
+    },
+    {
+      "symbol": "GLD",
+      "name": "SPDR Gold Shares",
+      "allocation": 20
+    }
+  ],
+  "liquidityPreference": "Keep 12-18 months of expenses accessible",
+  "portfolioNotes": [
+    "Current allocation is 50 percent VOO, 30 percent TSLA, and 20 percent GLD",
+    "TSLA is the largest single-stock position at 30 percent of the portfolio",
+    "Client is concerned about retirement income reliability",
+    "Spouse may stop working next year"
+  ],
+  "openTasks": [
+    "Review emergency reserve target",
+    "Discuss concentration risk in employer stock",
+    "Confirm retirement income gap assumptions"
+  ],
+  "lastMeetingNotes": "Client asked for a second opinion before making new product decisions. Advisor should gather suitability context before discussing products."
+}

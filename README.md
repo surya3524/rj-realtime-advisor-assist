@@ -85,6 +85,27 @@ If GitHub Pages is unavailable for the private repo, upload the
 `apps/advisor-sidebar/public` folder to Netlify Drop, Vercel, or any static host.
 The demo does not require server secrets.
 
+## Run The Zoom Transcript Context POC
+
+This repo also includes a second app for testing the next workflow: capture or
+import a Zoom conversation transcript, then let the advisor ask a question using
+conversation context, mocked RJ CRM data, approved knowledge, and a dated market
+snapshot.
+
+```bash
+npm run start:transcript
+```
+
+Then open:
+
+```text
+http://localhost:4174
+```
+
+The browser POC supports simulated transcript streaming, pasted Zoom transcript
+text, and browser mic dictation when available. Production Zoom capture should use
+Zoom RTMS or an approved Meeting SDK/native capture path.
+
 Run validation:
 
 ```bash

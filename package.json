@@ -5,6 +5,7 @@
   "description": "Concept POC for realtime advisor suggestions from simulated Zoom transcripts.",
   "scripts": {
     "start": "node services/poc-server/server.js",
+    "start:transcript": "node services/zoom-transcript-context-server/server.js",
     "test": "node tests/grounding.test.js"
   },
   "engines": {

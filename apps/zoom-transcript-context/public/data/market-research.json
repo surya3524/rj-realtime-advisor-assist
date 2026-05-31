@@ -1,0 +1,25 @@
+{
+  "asOf": "2026-05-30",
+  "symbols": {
+    "TSLA": {
+      "company": "Tesla, Inc.",
+      "lastPrice": 435.79,
+      "oneYearTriplePrice": 1307.37,
+      "impliedReturnToTriple": 200,
+      "analystConsensusRange": {
+        "averageTargetsObserved": [411.89, 450.45],
+        "highTargetObserved": 548,
+        "sourceNotes": [
+          "StockAnalysis reported a 47-analyst average 12-month price target of $411.89 on May 26, 2026.",
+          "VCP Scanner reported an 81-analyst consensus target of $450.45 and high target of $548.00 on May 22, 2026."
+        ]
+      },
+      "fundamentalNotes": [
+        "A 3x move in one year would require roughly a 200 percent gain from the snapshot price.",
+        "The observed consensus and high analyst targets are far below a 3x price level.",
+        "TSLA estimates have wide dispersion, so the right advisor response is scenario planning, not prediction."
+      ],
+      "advisorConclusion": "Available analyst targets in this snapshot do not support a 3x one-year move as a base case. Treat it as a speculative upside scenario and compare it with the client's concentration risk and prior conservative risk profile."
+    }
+  }
+}

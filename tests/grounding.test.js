@@ -28,11 +28,27 @@ const marketResearch = JSON.parse(
 const publicMarketResearch = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "apps", "advisor-sidebar", "public", "data", "market-research.json"), "utf8")
 );
+const transcriptAppKnowledgeBase = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "zoom-transcript-context", "public", "data", "approved-knowledge.json"), "utf8")
+);
+const transcriptAppDemoScript = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "zoom-transcript-context", "public", "data", "demo-call-script.json"), "utf8")
+);
+const transcriptAppCrmProfile = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "zoom-transcript-context", "public", "data", "crm-client-profile.json"), "utf8")
+);
+const transcriptAppMarketResearch = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "apps", "zoom-transcript-context", "public", "data", "market-research.json"), "utf8")
+);
 
 assert.deepStrictEqual(publicKnowledgeBase, knowledgeBase);
 assert.deepStrictEqual(publicDemoScript, demoScript);
 assert.deepStrictEqual(publicCrmProfile, crmProfile);
 assert.deepStrictEqual(publicMarketResearch, marketResearch);
+assert.deepStrictEqual(transcriptAppKnowledgeBase, knowledgeBase);
+assert.deepStrictEqual(transcriptAppDemoScript, demoScript);
+assert.deepStrictEqual(transcriptAppCrmProfile, crmProfile);
+assert.deepStrictEqual(transcriptAppMarketResearch, marketResearch);
 
 function event(text) {
   return {
